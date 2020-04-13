@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Sanity Test Suite">
+
+	<!-- For test cases with OPEN BUGS add the next text to the end of the test name and change the bug #
+	<a href='http://200.20.20.20:8080/tfs/HRCM_Collection/collectionName/_workitems/edit/13303' style='color:red;' target='_blank'> (Open BUG #13303) </a>
+	&lt;a href='http://200.20.20.20:8080/tfs/HRCM_Collection/collectionName/_workitems/edit/13303' style='color:red;' target='_blank'&gt; (Open BUG #13303) &lt;/a&gt; -->
+    
+    <listeners>
+        <listener class-name="automation.testing.report.ExtentReportSuiteListener"/>
+    </listeners>
+    
+    <!-- Browser related params -->
+	<parameter name="browserType" value="chrome"/>
+	<parameter name="webDriverDirectoryPath" value="browser-drivers"/>
+	<parameter name="isBrowserHeadless" value="false"/>
+	<parameter name="isRunningRemotely" value="false"/>
+	<parameter name="seleniumGridHubUrl" value="http://localhost:4444/wd/hub"/>
+  	
+  	<!-- Reporting params -->
+  	<parameter name="reportsDirectoryName" value="reports"/>
+  	<parameter name="reportFileName" value="SanityTestSuiteReport.html"/>
+  	<parameter name="tfsTestCasePrefix" value="http://tfs-path/_workitems?id="/>
+  	
+  	<parameter name="testerUsername" value="username"/>
+  	<parameter name="testerPassword" value="password"/>
+  	
+  	<!-- Amazon S3 info to retrieve xml835 from there -->
+  	<parameter name="amazonS3clientRegion" value="us-east-1"/>
+  	<parameter name="amazonS3accessKeyId" value="amazonS3accessKeyId"/>
+  	<parameter name="amazonS3secretKeyId" value="amazonS3secretKeyId"/>
+  	<parameter name="amazonS3bucketName" value="amazonS3bucketName/bucket-1"/>
+  	
+  	<!-- In-project directories path -->
+  	<parameter name="actualFilesDirectoryToDownloadTo" value="qa/Actual"/>
+  	
+  	<test name="Sanity test 1" enabled="true">  		
+  		<parameter name="classSpecificParam" value="paramValue"/>	  	
+	  	<classes>
+	    	<class name="automation.testing.tests.TestBase"/>
+    	</classes>    	
+  	</test>
+  	
+  	<test name="Sanity test 2" enabled="true">  	
+	  	<parameter name="classSpecificParam" value="paramValue"/>	  	
+	  	<classes>
+	    	<class name="automation.testing.tests.TestBase"/>
+    	</classes>    	
+  	</test>
+  	
+</suite>
