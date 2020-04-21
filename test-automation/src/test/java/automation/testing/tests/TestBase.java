@@ -1,4 +1,4 @@
-package automation.testing.support;
+package automation.testing.tests;
 
 import java.lang.reflect.Method;
 
@@ -14,6 +14,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
+
+import automation.testing.pages.LoginPage;
+import automation.testing.support.DriverFactory;
+import automation.testing.support.HttpClientUtil;
 
 public abstract class TestBase {
 	
@@ -66,20 +70,24 @@ public abstract class TestBase {
 	@BeforeClass
 	public void init(String browserType, String webDriverDirectoryPath, boolean isBrowserHeadless, boolean isRunningRemotely, String seleniumGridHubUrl, 
 			String actualFilesDirectoryToDownloadTo, String amazonS3clientRegion, String amazonS3accessKeyId, String amazonS3secretKeyId, String amazonS3bucketName,
-			String testerUsername, String testerPassword, @Optional String optionalParam) throws Exception {
-				
-		// Initializing the webDriver for the test
-		webDriver = DriverFactory.invokeBrowser(browserType, webDriverDirectoryPath, isBrowserHeadless, actualFilesDirectoryToDownloadTo, isRunningRemotely, seleniumGridHubUrl);		
+			String testerUsername, String testerPassword, @Optional String optionalParam) {
 		
-		this.amazonS3clientRegion = amazonS3clientRegion;
-		this.amazonS3accessKeyId = amazonS3accessKeyId;
-		this.amazonS3secretKeyId = amazonS3secretKeyId;
-		this.amazonS3bucketName = amazonS3bucketName;
-		
-		logger.info("Starting to execute test class "+getClass().getName()+" by user "+testerUsername);		
-		
-		Assert.assertTrue(loginToSystemAndSetRestAPICookie(loginUrl, testerUsername, testerPassword), "Failed to login with user '"+testerUsername+"' and password '"+testerPassword);
-		
+		try {
+			// Initializing the webDriver for the test
+			webDriver = DriverFactory.invokeBrowser(browserType, webDriverDirectoryPath, isBrowserHeadless, actualFilesDirectoryToDownloadTo, isRunningRemotely, seleniumGridHubUrl);		
+			
+			this.amazonS3clientRegion = amazonS3clientRegion;
+			this.amazonS3accessKeyId = amazonS3accessKeyId;
+			this.amazonS3secretKeyId = amazonS3secretKeyId;
+			this.amazonS3bucketName = amazonS3bucketName;
+			
+			logger.info("Starting to execute test class "+getClass().getName()+" by user "+testerUsername);		
+			
+			Assert.assertTrue(loginToSystemAndSetRestAPICookie(loginUrl, testerUsername, testerPassword), "Failed to login with user '"+testerUsername+"' and password '"+testerPassword);
+		} catch (Exception e) {
+			e.printStackTrace();
+			Assert.assertTrue(false, "Failed to run init method of the test");
+		}		
 	}
 	
 	/** Login to the system and validate that the DLS server is up. If not then try again after wait time of 1 minute. Timeout for tries is 10 minutes. */

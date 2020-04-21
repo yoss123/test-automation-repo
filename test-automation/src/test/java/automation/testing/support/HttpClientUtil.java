@@ -53,9 +53,13 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.net.HttpHeaders;
 
+import automation.testing.pages.LoginPage;
+
 public class HttpClientUtil {
 	
-public static final int NUMBER_OF_CONNECTIONS_TO_UPLOAD_FILES = 5; 
+	public static final int NUMBER_OF_CONNECTIONS_TO_UPLOAD_FILES = 5;
+	
+	public static final String PING_TO_SYSTEM_REST_SERVICE_URL = "/ping";
 	
 	public static final int NUMBER_OF_TRIES_TO_GET_HTTP_OK_RESPONSE = 3;
 	public static final int TIME_BETWEEN_TRIES_TO_GET_HTTP_OK_RESPONSE = 3000; // in msec

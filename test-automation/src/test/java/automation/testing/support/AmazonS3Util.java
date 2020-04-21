@@ -25,6 +25,8 @@ import com.amazonaws.services.s3.model.S3ObjectSummary;
 
 public class AmazonS3Util {
 	
+	public static final String LOCAL_TEMP_DIRECTORY = "temp";
+	
 	public static boolean isObjectExist(AmazonS3 s3Client, String bucketName, String objectKey) {
 		
 		try {

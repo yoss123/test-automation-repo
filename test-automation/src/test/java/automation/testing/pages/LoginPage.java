@@ -1,4 +1,4 @@
-package automation.testing.support;
+package automation.testing.pages;
 
 import org.apache.logging.log4j.LogManager;
 import org.openqa.selenium.By;

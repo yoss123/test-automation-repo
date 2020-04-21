@@ -6,6 +6,8 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import automation.testing.pages.LoginPage;
+
 public class ItemsLoaderThread extends Thread {
 	
 	int fileIndexInDirectoryToStartFrom;

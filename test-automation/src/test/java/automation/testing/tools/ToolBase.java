@@ -1,4 +1,4 @@
-package automation.testing.support;
+package automation.testing.tools;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +15,8 @@ import org.apache.commons.vfs2.VFS;
 import org.apache.commons.vfs2.auth.StaticUserAuthenticator;
 import org.apache.commons.vfs2.impl.DefaultFileSystemConfigBuilder;
 import org.testng.annotations.AfterClass;
+
+import automation.testing.tests.TestBase;
 
 public class ToolBase extends TestBase {
 	
